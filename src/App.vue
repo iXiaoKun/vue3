@@ -164,8 +164,8 @@ const backgroundImages = [
   // '/backgrounds/15.jpg',
   // '/backgrounds/16.jpg',
   // '/backgrounds/17.jpg',
-    '/backgrounds/18.jpg',
-     '/backgrounds/19.jpg',
+  //   '/backgrounds/18.jpg',
+  //    '/backgrounds/19.jpg',
 ];
 
 // 当前显示的图片索引
