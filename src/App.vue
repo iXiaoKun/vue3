@@ -10,9 +10,13 @@
     <div v-else>
        <!-- 人员列表弹窗 -->
       <el-button type="success" size="large" :icon="Search" @click="showPeopleList" round>展示人员列表</el-button>
+      <!-- 添加控制按钮 -->
+      <el-button type="success" size="large" :icon="Search" @click="showImageSwitcher = !showImageSwitcher" round>{{ showImageSwitcher ? '隐藏图片' : '展示图片' }}</el-button>
       <PeopleListModal :show="showPeopleModal" :people="people" @close="showPeopleModal = false" />
        <!-- 显示下一个过生日的人员的倒计时 -->
       <CountdownTimer v-if="nextBirthdayPerson" :person="nextBirthdayPerson" />
+      <!-- 图片切换组件 -->
+      <ImageSwitcher v-if="showImageSwitcher" :images="backgroundImages" />
     </div>
   </div>
 </template>
@@ -26,6 +30,7 @@ import CountdownTimer from './components/CountdownTimer.vue';
 import GiftModal from './components/GiftModal.vue';
 import PeopleListModal from './components/PeopleListModal.vue';
 import { Search } from '@element-plus/icons-vue'
+import ImageSwitcher from './components/ImageSwitcher.vue';
 
 // 定义人员类型，包含姓名、生日和是否使用农历
 type Person = {
@@ -36,6 +41,8 @@ type Person = {
 
 // 控制礼物弹窗的显示与隐藏
 const showGiftModal = ref(false);
+// 控制图片切换组件的显示与隐藏
+const showImageSwitcher = ref(false);
 
 // 礼物列表
 const allGifts = [
@@ -202,7 +209,7 @@ onUnmounted(() => {
 
 // 测试数据
 const people: Person[] = [
-  { name: '张三', birthday: '1996-01-29', isLunar: true },
+  { name: '张三', birthday: '1996-02-02', isLunar: true },
   { name: '李四', birthday: '1999-01-22', isLunar: true },
   { name: '王五', birthday: '2000-05-07', isLunar: true },
   { name: '老六', birthday: '2000-08-19', isLunar: false },
